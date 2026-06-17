@@ -18,7 +18,19 @@ Example Output:
 
 250
 440
+
 """
 
 def max_audience_performances(audiences):
-    
+    new_map = {}
+    for i in audiences:
+        new_map[i] = new_map.get(i,0) + 1
+    full = max(new_map)
+    total = full * new_map[full]
+    return total
+
+audiences1 = [100, 200, 200, 150, 100, 250]
+audiences2 = [120, 180, 220, 150, 220]
+
+print(max_audience_performances(audiences1))
+print(max_audience_performances(audiences2))
