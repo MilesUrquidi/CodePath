@@ -1,26 +1,66 @@
 """
-Problem 1: Building a Playlist
-The assignment statement to the top_hits_2010s variable below creates the linked list Uptown Funk -> Party Rock Anthem -> Bad Romance. Break apart the assignment statement into multiple lines with one call to the Node constructor per line to recreate the list.
+In the Villager class below, each villager has a friends attribute, which is a list of other villagers they are friends with.
 
-class SongNode:
-    def __init__(self, song, next=None)
-        self.song = song
-        self.next = next
+Write a method get_mutuals() that takes one parameter, a Villager instance new_contact, 
+and returns a list with the name of all friends the current villager and new_contact have in common.
 
-# For testing
-def print_linked_list(node):
-    current = node
-    while current:
-        print(current.song, end=" -> " if current.next else "")
-        current = current.next
-    print()
-        
-top_hits_2010s = SongNode("Uptown Funk", SongNode("Party Rock Anthem", SongNode("Bad Romance")))
+class Villager:
+    def __init__(self, name, species, catchphrase):
+        self.name = name
+        self.species = species
+        self.catchphrase = catchphrase
+        self.friends = []
+
+    def get_mutuals(self, new_contact):
+        pass
 Example Usage:
 
-print_linked_list(top_hits_2010s)
+bob = Villager("Bob", "Cat", "pthhhpth")
+marshal = Villager("Marshal", "Squirrel", "sulky")
+ankha = Villager("Ankha", "Cat", "me meow")
+fauna = Villager("Fauna", "Deer", "dearie")
+raymond = Villager("Raymond", "Cat", "crisp")
+stitches = Villager("Stitches", "Cub", "stuffin")
+
+bob.friends = [stitches, raymond, fauna]
+marshal.friends = [raymond, ankha, fauna]
+print(bob.get_mutuals(marshal))
+
+ankha.friends = [marshal]
+print(bob.get_mutuals(ankha))
 Example Output:
 
-Uptown Funk -> Party Rock Anthem -> Bad Romance
+['Raymond', 'Fauna']
+[]
 """
 
+class Villager:
+    def __init__(self, name, species, catchphrase):
+        self.name = name
+        self.species = species
+        self.catchphrase = catchphrase
+        self.friends = []
+
+    def get_mutuals(self, new_contact):
+        match = []
+
+        for i in self.friends:
+            if i in new_contact.friends:
+                match.append(i.name)
+        
+        return match
+
+
+bob = Villager("Bob", "Cat", "pthhhpth")
+marshal = Villager("Marshal", "Squirrel", "sulky")
+ankha = Villager("Ankha", "Cat", "me meow")
+fauna = Villager("Fauna", "Deer", "dearie")
+raymond = Villager("Raymond", "Cat", "crisp")
+stitches = Villager("Stitches", "Cub", "stuffin")
+
+bob.friends = [stitches, raymond, fauna]
+marshal.friends = [raymond, ankha, fauna]
+print(bob.get_mutuals(marshal))
+
+ankha.friends = [marshal]
+print(bob.get_mutuals(ankha))
